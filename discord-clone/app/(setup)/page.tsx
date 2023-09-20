@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
-import { InitialModel } from "@/components/models/initial-model";
+import { InitialModal } from "@/components/modals/initial-modal";
 
 import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 
@@ -23,7 +23,7 @@ const SetupPage = async () => {
     return redirect(`/servers/${server.id}`);
   }
 
-  return <InitialModel />;
+  return <InitialModal />;
 }
  
 export default SetupPage;
