@@ -16,24 +16,6 @@ export async function POST(req: Request) {
             return new NextResponse("Unauthorized" , {status: 401});
         }
         
-        const testServer =  {
-            profileId: profile.id,
-            name,
-            imageUrl,
-            inviteCode: uuidv4(),
-            channels: {
-              create: [
-                { name: "general", profileId: profile.id }
-              ]
-            },
-            members: {
-              create: [
-                { profileId: profile.id, role: MemberRole.ADMIN }
-              ]
-            }
-        }
-
-        console.log({testServer});
 
 
         const server = await db.server.create({
@@ -59,6 +41,6 @@ export async function POST(req: Request) {
 
     } catch (error) {
         console.log("[SERVERS_POST]", error);
-        return new NextResponse("Internal Error what the heck", {status: 500});
+        return new NextResponse("Internal Error", {status: 500});
     }
 }
