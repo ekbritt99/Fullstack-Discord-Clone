@@ -10,6 +10,7 @@ from "@prisma/client";
 import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { ActionTooltip } from "@/components/action-toolkit";
+import { useModal } from "@/hooks/use-model-store";
 
 
 interface ServerChannelProps {
@@ -30,6 +31,7 @@ export const ServerChannel = ({
     role
 }: ServerChannelProps) => {
 
+    const { onOpen } =  useModal();
     const params = useParams();
     const router = useRouter();
 
@@ -59,6 +61,7 @@ export const ServerChannel = ({
                     </ActionTooltip>
                     <ActionTooltip label="Delete">
                         <Trash 
+                        onClick={() => onOpen("deleteChannel", { server, channel })}
                             className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 darl:text-zinc-400 dark:hover:text-zinc-300 transition"
                         />
                     </ActionTooltip>
